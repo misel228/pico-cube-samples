@@ -115,8 +115,18 @@ for x in range(4):
 reset(0)
 resetlayer()
 
+for x in range(4):
+    enable_layer(x)
+
+index  = 0
+all_ones_numbers = [0,1,3,7,15,31,63,127,255,511,1023,2047,4095,8191,16383,32767,65535];
+
 #generate a list of numbers that only have 1 bit set to 1
 for i in range(65535):
+    if((i % 4083) == 0):
+        print(index)
+        light_on_bitmap(3, number_2_array(all_ones_numbers[index]))
+        index = index + 1
     print('.', end='')
     if(count_ones(i)<=1):
         numberList.append(i)
@@ -124,6 +134,8 @@ for i in range(65535):
         break
 
 
+reset(0)
+resetlayer()
 
 #since only one layer can be active at once we have to continually 
 # cycle through them and rely on persistance of vision.
